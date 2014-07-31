@@ -22,7 +22,6 @@ angular
       })
       .when('/weather', {
         templateUrl: 'views/weather.html',
-        controller: 'WeatherCtrl'
       })
       .otherwise({
         redirectTo: '/'
