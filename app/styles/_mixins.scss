@@ -1,0 +1,41 @@
+$VENDORS: webkit moz ms o;
+
+@mixin prefixer($property, $value) {
+  @each $vendor in $VENDORS {
+    -#{$vendor}-#{$property}: $value;
+  }
+  #{$property}: $value;
+}
+
+@mixin linear-gradient($startColor, $endColor) {
+  background: -moz-linear-gradient(top, $startColor 0%, $endColor 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,$startColor), color-stop(100%,$endColor)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, $startColor 0%,$endColor 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, $startColor 0%,$endColor 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, $startColor 0%,$endColor 100%); /* IE10+ */
+  background: linear-gradient(to bottom, $startColor 0%,$endColor 100%); /* W3C */
+}
+
+@mixin keyframes($name) {
+  @-webkit-keyframes #{$name} {
+    @content; 
+  }
+  @-moz-keyframes #{$name} {
+    @content;
+  }
+  @-ms-keyframes #{$name} {
+    @content;
+  }
+  @keyframes #{$name} {
+    @content;
+  } 
+}
+
+%unselectable {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
