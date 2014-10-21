@@ -1,24 +1,24 @@
 <div
   class="weatherWidget"
-  ng-cloak
+  ng-show="weatherData !== null"
 >
   <div class="weatherWidget-header">
     <div class="weatherWidget-cityName">
       {{weatherData.name}}
-      <span class="weatherWidget-value">{{weatherData.main.temp | temperature:tempType}} &deg;{{tempType}}</span>
+      <span class="weatherWidget-value">{{weatherData.main.temp | temperature:tempUnit}} &deg;{{tempUnit}}</span>
     </div>
     <div class="weatherWidget-humidity">
       Humidity
       <span class="weatherWidget-value">{{weatherData.main.humidity}} %</span>
     </div>
     <div class="weatherWidget-input">
-      <input type="text" ng-model="city" ng-enter="updateCity()">
+      <input type="text" ng-model="city" ng-enter="getData()">
     </div>
     <div class="weatherWidget-additionalToggle" ng-click="showAdditional = !showAdditional">|||</div>
-    <div class="weatherWidget-tempSwitch" ng-click="toggleTempType()">
-      <span ng-class="{'weatherWidget-emphasize': tempType == 'C'}">&deg;C</span>
+    <div class="weatherWidget-tempSwitch" ng-click="toggleTempUnit()">
+      <span ng-class="{'weatherWidget-emphasize': tempUnit == 'C'}">&deg;C</span>
       |
-      <span ng-class="{'weatherWidget-emphasize': tempType == 'F'}">&deg;F</span>
+      <span ng-class="{'weatherWidget-emphasize': tempUnit == 'F'}">&deg;F</span>
     </div>
   </div>
   <div class="weatherWidget-additionalInfo" ng-show="showAdditional">
