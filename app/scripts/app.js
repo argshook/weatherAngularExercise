@@ -17,10 +17,6 @@ angular
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
-      })
-      .when('/weather', {
         templateUrl: 'views/weather.html',
       })
       .otherwise({

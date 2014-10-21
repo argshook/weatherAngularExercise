@@ -1,5 +1,5 @@
 $weatherWidget: '.weatherWidget';
-$weatherWidgetWidth: 400px;
+$weatherWidgetWidth: 500px;
 $weatherWidgetMainFont: 'Roboto', sans-serif;
 $weatherWidgetTextColor: #363636;
 $weatherPrimaryColor: lighten(#7ec0ee, 20);
@@ -9,7 +9,7 @@ $weatherPrimaryColor: lighten(#7ec0ee, 20);
   position: relative;
   margin: 1em 0;
   overflow: hidden;
-  
+
   @include linear-gradient($weatherPrimaryColor, darken($weatherPrimaryColor, 20));
   border: 1px solid darken($weatherPrimaryColor, 20);
   border-radius: 3px;

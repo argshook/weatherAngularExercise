@@ -12,9 +12,9 @@ angular.module('weatherAngularApp')
   .filter('temperature', function () {
     return function (temperature, tempType) {
       if(tempType === 'C') { // Celsius
-        return parseFloat(temperature) - 273.15 >> 0; // kelvin to celsius
+        return Math.floor(parseFloat(temperature) - 273.15); // kelvin to celsius
       } else { // Fahrenheit
-        return ((temperature - 273.15) * 1.8 >> 0) + 32; // kelvin to fahrenheit
+        return (Math.floor((temperature - 273.15) * 1.8)) + 32; // kelvin to fahrenheit
       }
     };
   });

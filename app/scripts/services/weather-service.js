@@ -8,16 +8,21 @@
  * Factory in the weatherAngularApp.
  */
 angular.module('weatherAngularApp')
-  .factory('WeatherModel', function ($http, $q, $window) {
+  .factory('WeatherService', function ($http, $q, $window) {
     // Public API here
-    
+
     var getWeatherData = function (city, getNew) {
       var localData = $window.localStorage.getItem('weatherWidgetData'),
-          city      = city || 'Vilnius',
           deferred  = $q.defer();
 
+      city = city || 'Vilnius';
+
       // do we have new data and is it recent enough?
-      if(localData && new Date().getTime() / 1000 - 3600 < JSON.parse(localData).dt && !getNew) {
+      if(
+        localData &&
+        (Math.floor(new Date().getTime() / 1000 - 3600)) < JSON.parse(localData).dt + 7200 &&
+        !getNew
+      ) {
         deferred.resolve(JSON.parse(localData));
         return deferred.promise;
       } else {
@@ -25,16 +30,19 @@ angular.module('weatherAngularApp')
 
         $http.jsonp(url + '&callback=JSON_CALLBACK').
           success(function(data) {
-            deferred.resolve(data);
+            if(data.cod !== '404') {
+              deferred.resolve(data);
+
+              // TODO: move to service
+              $window.localStorage.setItem('weatherWidgetData', JSON.stringify(data));
+            } else {
+              deferred.resolve(false);
+            }
           }).
           error(function(data, status) {
             deferred.reject(status);
           });
 
-          // setting data for later reuse
-          deferred.promise.then(function(data) {
-            $window.localStorage.setItem('weatherWidgetData', JSON.stringify(data));
-          });
           return deferred.promise;
       }
     };
