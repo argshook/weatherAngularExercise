@@ -9,13 +9,13 @@
 angular.module('weatherAngularApp')
   .directive('weatherWidget', function () {
     return {
-      templateUrl: 'views/directives/weather-widget.html',
+      restrict: 'E',
       scope: {
         city: '@',
         tempUnit: '@'
       },
-      restrict: 'E',
       replace: true,
+      templateUrl: 'views/directives/weather-widget.html',
       controller: function($scope, WeatherService, $log) {
         $scope.showAdditional = true;
         $scope.weatherData = null;

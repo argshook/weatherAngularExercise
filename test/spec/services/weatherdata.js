@@ -11,8 +11,4 @@ describe('Service: weatherData', function () {
     weatherData = _weatherData_;
   }));
 
-  it('should return deferred object', function () {
-    // expect(!!weatherData).toBe(true);
-  });
-
 });

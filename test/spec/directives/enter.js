@@ -1,20 +1,33 @@
 'use strict';
 
-describe('Directive: enter', function () {
+describe('Directive: enter', function() {
+  var element, scope, compile, defaultData,
+      validTemplate = '<my-dir ng-model="data"></my-dir>';
 
-  // load the directive's module
-  beforeEach(module('weatherAngularApp'));
+  function createDirective(data, template) {
+    var elm;
 
-  var element,
-    scope;
+    scope.data = data || defaultData;
 
-  beforeEach(inject(function ($rootScope) {
-    scope = $rootScope.$new();
-  }));
+    elm = compile(template || valideTemplate)(scope);
 
-  it('should make hidden element visible', inject(function ($compile) {
-    element = angular.element('<enter></enter>');
-    element = $compile(element)(scope);
-    expect(element.text()).toBe('this is the enter directive');
-  }));
+    return elm;
+  }
+
+  beforeEach(function() {
+    module('weatherAngularApp');
+
+    defaultData = 42;
+
+    inject(function($rootScope, $compile) {
+      scope = $rootScope.$new();
+      compile = $compile;
+    });
+  });
+
+  describe('when created', function() {
+    it('should do something', function() {
+      expect(true).toBe(true);
+    });
+  });
 });
